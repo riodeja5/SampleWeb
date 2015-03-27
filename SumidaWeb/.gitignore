@@ -1,0 +1,14 @@
+# Ignore DB
+App_Data/
+
+# Ignore bin
+bin/
+
+# Ignore fonts
+fonts/
+
+# Ignore obj
+obj/
+
+# Ignore ico
+*.ico
