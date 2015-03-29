@@ -8,7 +8,8 @@ namespace SumidaWeb.Models
         public int Id { get; set; }
 
         [DisplayName("装置")]
-        public int MachineID { get; set; }
+        public virtual int MachineID { get; set; }
+        public virtual Machine Machine { get; set; }
 
         [DisplayName("機能識別名称")]
         public string LicenseName { get; set; }

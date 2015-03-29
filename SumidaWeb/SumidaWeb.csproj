@@ -167,6 +167,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MaintenanceHardwareController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
+    <Compile Include="Controllers\OutputsController.cs" />
     <Compile Include="Controllers\RollsController.cs" />
     <Compile Include="Controllers\SexesController.cs" />
     <Compile Include="Controllers\SOrdersController.cs" />
@@ -183,6 +184,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Fab.cs" />
+    <Compile Include="Models\Output.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Machine.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -260,11 +262,6 @@
     <Content Include="Views\Sexes\Edit.cshtml" />
     <Content Include="Views\Sexes\Index.cshtml" />
     <Content Include="Views\License\Index.cshtml" />
-    <Content Include="Views\SOrders\Create.cshtml" />
-    <Content Include="Views\SOrders\Delete.cshtml" />
-    <Content Include="Views\SOrders\Details.cshtml" />
-    <Content Include="Views\SOrders\Edit.cshtml" />
-    <Content Include="Views\SOrders\Index.cshtml" />
     <Content Include="Views\Maintenance\Index.cshtml" />
     <Content Include="Views\Rolls\Create.cshtml" />
     <Content Include="Views\Rolls\Delete.cshtml" />
@@ -297,6 +294,16 @@
     <Content Include="Views\Workstations\Details.cshtml" />
     <Content Include="Views\Workstations\Edit.cshtml" />
     <Content Include="Views\Workstations\Index.cshtml" />
+    <Content Include="Views\Outputs\Create.cshtml" />
+    <Content Include="Views\Outputs\Delete.cshtml" />
+    <Content Include="Views\Outputs\Details.cshtml" />
+    <Content Include="Views\Outputs\Edit.cshtml" />
+    <Content Include="Views\Outputs\Index.cshtml" />
+    <Content Include="Views\SOrders\Create.cshtml" />
+    <Content Include="Views\SOrders\Delete.cshtml" />
+    <Content Include="Views\SOrders\Details.cshtml" />
+    <Content Include="Views\SOrders\Edit.cshtml" />
+    <Content Include="Views\SOrders\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

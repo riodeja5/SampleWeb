@@ -1,0 +1,98 @@
+﻿@model SumidaWeb.Models.Output
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Output</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Member.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Member.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SOrder.LicenseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SOrder.LicenseName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Workstation.MapAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Workstation.MapAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PublicationApproval)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublicationApproval)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PublicationData)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublicationData)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Validity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Validity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DownloadStat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DownloadStat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DownloadDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DownloadDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DownloadNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DownloadNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmergencyStat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmergencyStat)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

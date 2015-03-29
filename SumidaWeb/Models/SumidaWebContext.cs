@@ -17,5 +17,7 @@ namespace SumidaWeb.Models
         public System.Data.Entity.DbSet<SumidaWeb.Models.Fab> Fabs { get; set; }
 
         public System.Data.Entity.DbSet<SumidaWeb.Models.Workstation> Workstations { get; set; }
+
+        public System.Data.Entity.DbSet<SumidaWeb.Models.Output> Outputs { get; set; }
     }
 }

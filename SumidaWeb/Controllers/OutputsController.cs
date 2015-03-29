@@ -10,112 +10,120 @@ using SumidaWeb.Models;
 
 namespace SumidaWeb.Controllers
 {
-    public class SOrdersController : Controller
+    public class OutputsController : Controller
     {
         private SumidaWebContext db = new SumidaWebContext();
 
-        // GET: SOrders
+        // GET: Outputs
         public ActionResult Index()
         {
-            var sOrders = db.SOrders.Include(s => s.Machine);
-            return View(sOrders.ToList());
+            var outputs = db.Outputs.Include(o => o.Member).Include(o => o.SOrder).Include(o => o.Workstation);
+            return View(outputs.ToList());
         }
 
-        // GET: SOrders/Details/5
+        // GET: Outputs/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SOrder sOrder = db.SOrders.Find(id);
-            if (sOrder == null)
+            Output output = db.Outputs.Find(id);
+            if (output == null)
             {
                 return HttpNotFound();
             }
-            return View(sOrder);
+            return View(output);
         }
 
-        // GET: SOrders/Create
+        // GET: Outputs/Create
         public ActionResult Create()
         {
-            ViewBag.MachineID = new SelectList(db.Machines, "Id", "MachineType");
+            ViewBag.MemberId = new SelectList(db.Members, "Id", "Name");
+            ViewBag.SOrderId = new SelectList(db.SOrders, "Id", "LicenseName");
+            ViewBag.WorkstationId = new SelectList(db.Workstations, "Id", "MapAddress");
             return View();
         }
 
-        // POST: SOrders/Create
+        // POST: Outputs/Create
         // 過多ポスティング攻撃を防止するには、バインド先とする特定のプロパティを有効にしてください。
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,MachineID,LicenseName,LicenseDetail,LicenseJap,LicenseEng,Date")] SOrder sOrder)
+        public ActionResult Create([Bind(Include = "Id,WorkstationId,SOrderId,PublicationApproval,MemberId,PublicationData,Validity,DownloadStat,DownloadDate,DownloadNum,EmergencyStat")] Output output)
         {
             if (ModelState.IsValid)
             {
-                db.SOrders.Add(sOrder);
+                db.Outputs.Add(output);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MachineID = new SelectList(db.Machines, "Id", "MachineType", sOrder.MachineID);
-            return View(sOrder);
+            ViewBag.MemberId = new SelectList(db.Members, "Id", "Name", output.MemberId);
+            ViewBag.SOrderId = new SelectList(db.SOrders, "Id", "LicenseName", output.SOrderId);
+            ViewBag.WorkstationId = new SelectList(db.Workstations, "Id", "MapAddress", output.WorkstationId);
+            return View(output);
         }
 
-        // GET: SOrders/Edit/5
+        // GET: Outputs/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SOrder sOrder = db.SOrders.Find(id);
-            if (sOrder == null)
+            Output output = db.Outputs.Find(id);
+            if (output == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.MachineID = new SelectList(db.Machines, "Id", "MachineType", sOrder.MachineID);
-            return View(sOrder);
+            ViewBag.MemberId = new SelectList(db.Members, "Id", "Name", output.MemberId);
+            ViewBag.SOrderId = new SelectList(db.SOrders, "Id", "LicenseName", output.SOrderId);
+            ViewBag.WorkstationId = new SelectList(db.Workstations, "Id", "MapAddress", output.WorkstationId);
+            return View(output);
         }
 
-        // POST: SOrders/Edit/5
+        // POST: Outputs/Edit/5
         // 過多ポスティング攻撃を防止するには、バインド先とする特定のプロパティを有効にしてください。
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,MachineID,LicenseName,LicenseDetail,LicenseJap,LicenseEng,Date")] SOrder sOrder)
+        public ActionResult Edit([Bind(Include = "Id,WorkstationId,SOrderId,PublicationApproval,MemberId,PublicationData,Validity,DownloadStat,DownloadDate,DownloadNum,EmergencyStat")] Output output)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(sOrder).State = EntityState.Modified;
+                db.Entry(output).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MachineID = new SelectList(db.Machines, "Id", "MachineType", sOrder.MachineID);
-            return View(sOrder);
+            ViewBag.MemberId = new SelectList(db.Members, "Id", "Name", output.MemberId);
+            ViewBag.SOrderId = new SelectList(db.SOrders, "Id", "LicenseName", output.SOrderId);
+            ViewBag.WorkstationId = new SelectList(db.Workstations, "Id", "MapAddress", output.WorkstationId);
+            return View(output);
         }
 
-        // GET: SOrders/Delete/5
+        // GET: Outputs/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SOrder sOrder = db.SOrders.Find(id);
-            if (sOrder == null)
+            Output output = db.Outputs.Find(id);
+            if (output == null)
             {
                 return HttpNotFound();
             }
-            return View(sOrder);
+            return View(output);
         }
 
-        // POST: SOrders/Delete/5
+        // POST: Outputs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SOrder sOrder = db.SOrders.Find(id);
-            db.SOrders.Remove(sOrder);
+            Output output = db.Outputs.Find(id);
+            db.Outputs.Remove(output);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
