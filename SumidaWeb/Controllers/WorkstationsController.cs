@@ -17,7 +17,8 @@ namespace SumidaWeb.Controllers
         // GET: Workstations
         public ActionResult Index()
         {
-            return View(db.Workstations.ToList());
+            var workstations = db.Workstations.Include(w => w.Fab).Include(w => w.Machine);
+            return View(workstations.ToList());
         }
 
         // GET: Workstations/Details/5
@@ -38,6 +39,8 @@ namespace SumidaWeb.Controllers
         // GET: Workstations/Create
         public ActionResult Create()
         {
+            ViewBag.FabId = new SelectList(db.Fabs, "Id", "FabName");
+            ViewBag.MachineId = new SelectList(db.Machines, "Id", "MachineType");
             return View();
         }
 
@@ -46,7 +49,7 @@ namespace SumidaWeb.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,EquipmentNo,MapAddress,Comment,Date,EmargencyMapAddress")] Workstation workstation)
+        public ActionResult Create([Bind(Include = "Id,FabId,MachineId,EquipmentNo,MapAddress,Comment,Date,EmargencyMapAddress")] Workstation workstation)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +58,8 @@ namespace SumidaWeb.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.FabId = new SelectList(db.Fabs, "Id", "FabName", workstation.FabId);
+            ViewBag.MachineId = new SelectList(db.Machines, "Id", "MachineType", workstation.MachineId);
             return View(workstation);
         }
 
@@ -70,6 +75,8 @@ namespace SumidaWeb.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.FabId = new SelectList(db.Fabs, "Id", "FabName", workstation.FabId);
+            ViewBag.MachineId = new SelectList(db.Machines, "Id", "MachineType", workstation.MachineId);
             return View(workstation);
         }
 
@@ -78,7 +85,7 @@ namespace SumidaWeb.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,EquipmentNo,MapAddress,Comment,Date,EmargencyMapAddress")] Workstation workstation)
+        public ActionResult Edit([Bind(Include = "Id,FabId,MachineId,EquipmentNo,MapAddress,Comment,Date,EmargencyMapAddress")] Workstation workstation)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +93,8 @@ namespace SumidaWeb.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.FabId = new SelectList(db.Fabs, "Id", "FabName", workstation.FabId);
+            ViewBag.MachineId = new SelectList(db.Machines, "Id", "MachineType", workstation.MachineId);
             return View(workstation);
         }
 

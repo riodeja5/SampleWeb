@@ -7,9 +7,13 @@ namespace SumidaWeb.Models
     {
         public int Id { get; set; }
 
+        // 外部キーだけでなく、外部キーIDを追加しなければ、スキャフォールディング生成時にDropDownListを生成してくれない
+        public virtual int? FabId { get; set; }
         public virtual Fab Fab { get; set; }
 
-        public virtual Machine Machnie { get; set; }
+        // 外部キーだけでなく、外部キーIDを追加しなければ、スキャフォールディング生成時にDropDownListを生成してくれない
+        public virtual int? MachineId { get; set; }
+        public virtual Machine Machine { get; set; }
 
         [DisplayName("装置番号")]
         public int EquipmentNo { get; set; }

@@ -25,6 +25,7 @@ namespace SumidaWeb.Models
         [DisplayName("登録日")]
         public DateTime Date { get; set; }
 
+        // 外部キーだけでなく、外部キーIDを追加しなければ、スキャフォールディング生成時にDropDownListを生成してくれない
         public int? RollID { get; set; }
 
         [DisplayName("役割")]

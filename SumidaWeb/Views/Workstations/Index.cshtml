@@ -12,6 +12,12 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Fab.FabName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Machine.MachineType)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.EquipmentNo)
         </th>
         <th>
@@ -31,6 +37,12 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fab.FabName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Machine.MachineType)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.EquipmentNo)
         </td>

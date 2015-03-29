@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace SumidaWeb.Models
 {
@@ -8,5 +9,7 @@ namespace SumidaWeb.Models
 
         [DisplayName("User名")]
         public string UserName { get; set; }
+
+        public virtual ICollection<Fab> Fabs { get; set; }
     }
 }

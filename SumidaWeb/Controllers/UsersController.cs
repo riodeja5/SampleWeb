@@ -110,6 +110,10 @@ namespace SumidaWeb.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             User user = db.Users.Find(id);
+
+            // 削除時に関連するFabを読み込んでおかないと、関連するFabが判別できないためエラーとなる
+            var fabs = user.Fabs;
+
             db.Users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");

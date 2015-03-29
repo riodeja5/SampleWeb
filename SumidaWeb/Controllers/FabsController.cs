@@ -17,7 +17,8 @@ namespace SumidaWeb.Controllers
         // GET: Fabs
         public ActionResult Index()
         {
-            return View(db.Fabs.ToList());
+            var fabs = db.Fabs.Include(f => f.User);
+            return View(fabs.ToList());
         }
 
         // GET: Fabs/Details/5
@@ -38,6 +39,7 @@ namespace SumidaWeb.Controllers
         // GET: Fabs/Create
         public ActionResult Create()
         {
+            ViewBag.UserID = new SelectList(db.Users, "Id", "UserName");
             return View();
         }
 
@@ -46,7 +48,7 @@ namespace SumidaWeb.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FabName")] Fab fab)
+        public ActionResult Create([Bind(Include = "Id,UserID,FabName")] Fab fab)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +57,7 @@ namespace SumidaWeb.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.UserID = new SelectList(db.Users, "Id", "UserName", fab.UserID);
             return View(fab);
         }
 
@@ -70,6 +73,7 @@ namespace SumidaWeb.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.UserID = new SelectList(db.Users, "Id", "UserName", fab.UserID);
             return View(fab);
         }
 
@@ -78,7 +82,7 @@ namespace SumidaWeb.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FabName")] Fab fab)
+        public ActionResult Edit([Bind(Include = "Id,UserID,FabName")] Fab fab)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,7 @@ namespace SumidaWeb.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.UserID = new SelectList(db.Users, "Id", "UserName", fab.UserID);
             return View(fab);
         }
 
@@ -110,6 +115,10 @@ namespace SumidaWeb.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Fab fab = db.Fabs.Find(id);
+
+            // 削除時に関連するWorkstationを読み込んでおかないと、関連するWorkstationが判別できないためエラーとなる
+            var workstations = fab.Workstations;
+
             db.Fabs.Remove(fab);
             db.SaveChanges();
             return RedirectToAction("Index");
