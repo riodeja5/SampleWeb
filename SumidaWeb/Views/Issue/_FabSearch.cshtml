@@ -1,0 +1,13 @@
+﻿@model IEnumerable<SumidaWeb.Models.Fab>
+
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.FabName)</th>
+    </tr>
+    @foreach (var item in Model) {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.FabName)</td>
+        </tr>
+    }
+</table>
+
