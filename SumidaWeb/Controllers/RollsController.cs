@@ -110,6 +110,10 @@ namespace SumidaWeb.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Roll roll = db.Rolls.Find(id);
+
+            // 削除時に関連するMemberを読み込んでおかないと、関連するMemberが判別できないためエラーとなる
+            var members = roll.Members;
+
             db.Rolls.Remove(roll);
             db.SaveChanges();
             return RedirectToAction("Index");

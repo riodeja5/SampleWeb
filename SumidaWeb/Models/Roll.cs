@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace SumidaWeb.Models
 {
@@ -8,5 +9,7 @@ namespace SumidaWeb.Models
 
         [DisplayName("役割")]
         public string RollName { get; set; }
+
+        public virtual ICollection<Member> Members { get; set; }
     }
 }
