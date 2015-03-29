@@ -159,13 +159,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FabsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LicenseController.cs" />
+    <Compile Include="Controllers\MachinesController.cs" />
     <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
+    <Compile Include="Controllers\RollsController.cs" />
     <Compile Include="Controllers\SexesController.cs" />
     <Compile Include="Controllers\SOrdersController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\WorkstationsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -176,8 +181,13 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Fab.cs" />
+    <Compile Include="Models\Workstation.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Machine.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\Roll.cs" />
     <Compile Include="Models\SOrder.cs" />
     <Compile Include="Models\SumidaWebContext.cs" />
     <Compile Include="Models\Sex.cs" />
@@ -243,11 +253,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Members\Create.cshtml" />
-    <Content Include="Views\Members\Delete.cshtml" />
-    <Content Include="Views\Members\Details.cshtml" />
-    <Content Include="Views\Members\Edit.cshtml" />
-    <Content Include="Views\Members\Index.cshtml" />
     <Content Include="Views\Sexes\Create.cshtml" />
     <Content Include="Views\Sexes\Delete.cshtml" />
     <Content Include="Views\Sexes\Details.cshtml" />
@@ -260,6 +265,36 @@
     <Content Include="Views\SOrders\Edit.cshtml" />
     <Content Include="Views\SOrders\Index.cshtml" />
     <Content Include="Views\Maintenance\Index.cshtml" />
+    <Content Include="Views\Rolls\Create.cshtml" />
+    <Content Include="Views\Rolls\Delete.cshtml" />
+    <Content Include="Views\Rolls\Details.cshtml" />
+    <Content Include="Views\Rolls\Edit.cshtml" />
+    <Content Include="Views\Rolls\Index.cshtml" />
+    <Content Include="Views\Machines\Create.cshtml" />
+    <Content Include="Views\Machines\Delete.cshtml" />
+    <Content Include="Views\Machines\Details.cshtml" />
+    <Content Include="Views\Machines\Edit.cshtml" />
+    <Content Include="Views\Machines\Index.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Fabs\Create.cshtml" />
+    <Content Include="Views\Fabs\Delete.cshtml" />
+    <Content Include="Views\Fabs\Details.cshtml" />
+    <Content Include="Views\Fabs\Edit.cshtml" />
+    <Content Include="Views\Fabs\Index.cshtml" />
+    <Content Include="Views\Workstations\Create.cshtml" />
+    <Content Include="Views\Workstations\Delete.cshtml" />
+    <Content Include="Views\Workstations\Details.cshtml" />
+    <Content Include="Views\Workstations\Edit.cshtml" />
+    <Content Include="Views\Workstations\Index.cshtml" />
+    <Content Include="Views\Members\Create.cshtml" />
+    <Content Include="Views\Members\Delete.cshtml" />
+    <Content Include="Views\Members\Details.cshtml" />
+    <Content Include="Views\Members\Edit.cshtml" />
+    <Content Include="Views\Members\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

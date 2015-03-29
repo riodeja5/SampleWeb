@@ -10,112 +10,107 @@ using SumidaWeb.Models;
 
 namespace SumidaWeb.Controllers
 {
-    public class MembersController : Controller
+    public class FabsController : Controller
     {
         private SumidaWebContext db = new SumidaWebContext();
 
-        // GET: Members
+        // GET: Fabs
         public ActionResult Index()
         {
-            var members = db.Members.Include(m => m.Roll);
-            return View(members.ToList());
+            return View(db.Fabs.ToList());
         }
 
-        // GET: Members/Details/5
+        // GET: Fabs/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Member member = db.Members.Find(id);
-            if (member == null)
+            Fab fab = db.Fabs.Find(id);
+            if (fab == null)
             {
                 return HttpNotFound();
             }
-            return View(member);
+            return View(fab);
         }
 
-        // GET: Members/Create
+        // GET: Fabs/Create
         public ActionResult Create()
         {
-            ViewBag.RollID = new SelectList(db.Rolls, "Id", "RollName");
             return View();
         }
 
-        // POST: Members/Create
+        // POST: Fabs/Create
         // 過多ポスティング攻撃を防止するには、バインド先とする特定のプロパティを有効にしてください。
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,UserID,CorporationID,CorporationName,Email,Date,RollID")] Member member)
+        public ActionResult Create([Bind(Include = "Id,FabName")] Fab fab)
         {
             if (ModelState.IsValid)
             {
-                db.Members.Add(member);
+                db.Fabs.Add(fab);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.RollID = new SelectList(db.Rolls, "Id", "RollName", member.RollID);
-            return View(member);
+            return View(fab);
         }
 
-        // GET: Members/Edit/5
+        // GET: Fabs/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Member member = db.Members.Find(id);
-            if (member == null)
+            Fab fab = db.Fabs.Find(id);
+            if (fab == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.RollID = new SelectList(db.Rolls, "Id", "RollName", member.RollID);
-            return View(member);
+            return View(fab);
         }
 
-        // POST: Members/Edit/5
+        // POST: Fabs/Edit/5
         // 過多ポスティング攻撃を防止するには、バインド先とする特定のプロパティを有効にしてください。
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,UserID,CorporationID,CorporationName,Email,Date,RollID")] Member member)
+        public ActionResult Edit([Bind(Include = "Id,FabName")] Fab fab)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(member).State = EntityState.Modified;
+                db.Entry(fab).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.RollID = new SelectList(db.Rolls, "Id", "RollName", member.RollID);
-            return View(member);
+            return View(fab);
         }
 
-        // GET: Members/Delete/5
+        // GET: Fabs/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Member member = db.Members.Find(id);
-            if (member == null)
+            Fab fab = db.Fabs.Find(id);
+            if (fab == null)
             {
                 return HttpNotFound();
             }
-            return View(member);
+            return View(fab);
         }
 
-        // POST: Members/Delete/5
+        // POST: Fabs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Member member = db.Members.Find(id);
-            db.Members.Remove(member);
+            Fab fab = db.Fabs.Find(id);
+            db.Fabs.Remove(fab);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

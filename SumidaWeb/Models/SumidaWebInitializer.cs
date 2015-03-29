@@ -8,12 +8,20 @@ namespace SumidaWeb.Models
     {
         protected override void Seed(SumidaWebContext context)
         {
+            var rolls = new List<Roll> {
+                new Roll {
+                    RollName = "管理者"
+                },
+                new Roll {
+                    RollName = "設計"
+                },
+                new Roll {
+                    RollName = "営業"
+                },
+            };
+
             var members = new List<Member> {
                 new Member {
-                    Name = "角田祥太",
-                    Email = "riodeja_5_shota@hotmail.com",
-                    Birty = DateTime.Parse("1981-12-15"),
-                    Married = true
                 }
             };
 
@@ -29,7 +37,8 @@ namespace SumidaWeb.Models
                 }
             };
 
-            members.ForEach(m => context.Members.Add(m));
+            rolls.ForEach(r => context.Rolls.Add(r));
+            //            members.ForEach(m => context.Members.Add(m));
             sexes.ForEach(s => context.Sexes.Add(s));
             context.SaveChanges();
         }

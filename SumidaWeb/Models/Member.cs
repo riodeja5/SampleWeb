@@ -1,18 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel;
 
 namespace SumidaWeb.Models
 {
     public class Member
     {
         public int Id { get; set; }
+
+        [DisplayName("氏名")]
         public string Name { get; set; }
-        public virtual Sex SexId { get; set; }
+
+        [DisplayName("ユーザーID")]
+        public string UserID { get; set; }
+
+        [DisplayName("会社ID")]
+        public string CorporationID { get; set; }
+
+        [DisplayName("会社名")]
+        public string CorporationName { get; set; }
+
+        [DisplayName("メールアドレス")]
         public string Email { get; set; }
-        public DateTime Birty { get; set; }
-        public bool Married { get; set; }
-        public string Memo { get; set; }
+
+        [DisplayName("登録日")]
+        public DateTime Date { get; set; }
+
+        public int? RollID { get; set; }
+
+        [DisplayName("役割")]
+        public virtual Roll Roll { get; set; }
     }
 }

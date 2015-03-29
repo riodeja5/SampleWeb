@@ -1,0 +1,64 @@
+﻿@model SumidaWeb.Models.Workstation
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Workstation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EquipmentNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EquipmentNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MapAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MapAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmargencyMapAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmargencyMapAddress)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

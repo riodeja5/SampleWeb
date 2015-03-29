@@ -10,112 +10,107 @@ using SumidaWeb.Models;
 
 namespace SumidaWeb.Controllers
 {
-    public class MembersController : Controller
+    public class RollsController : Controller
     {
         private SumidaWebContext db = new SumidaWebContext();
 
-        // GET: Members
+        // GET: Rolls
         public ActionResult Index()
         {
-            var members = db.Members.Include(m => m.Roll);
-            return View(members.ToList());
+            return View(db.Rolls.ToList());
         }
 
-        // GET: Members/Details/5
+        // GET: Rolls/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Member member = db.Members.Find(id);
-            if (member == null)
+            Roll roll = db.Rolls.Find(id);
+            if (roll == null)
             {
                 return HttpNotFound();
             }
-            return View(member);
+            return View(roll);
         }
 
-        // GET: Members/Create
+        // GET: Rolls/Create
         public ActionResult Create()
         {
-            ViewBag.RollID = new SelectList(db.Rolls, "Id", "RollName");
             return View();
         }
 
-        // POST: Members/Create
+        // POST: Rolls/Create
         // 過多ポスティング攻撃を防止するには、バインド先とする特定のプロパティを有効にしてください。
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,UserID,CorporationID,CorporationName,Email,Date,RollID")] Member member)
+        public ActionResult Create([Bind(Include = "Id,RollName")] Roll roll)
         {
             if (ModelState.IsValid)
             {
-                db.Members.Add(member);
+                db.Rolls.Add(roll);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.RollID = new SelectList(db.Rolls, "Id", "RollName", member.RollID);
-            return View(member);
+            return View(roll);
         }
 
-        // GET: Members/Edit/5
+        // GET: Rolls/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Member member = db.Members.Find(id);
-            if (member == null)
+            Roll roll = db.Rolls.Find(id);
+            if (roll == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.RollID = new SelectList(db.Rolls, "Id", "RollName", member.RollID);
-            return View(member);
+            return View(roll);
         }
 
-        // POST: Members/Edit/5
+        // POST: Rolls/Edit/5
         // 過多ポスティング攻撃を防止するには、バインド先とする特定のプロパティを有効にしてください。
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,UserID,CorporationID,CorporationName,Email,Date,RollID")] Member member)
+        public ActionResult Edit([Bind(Include = "Id,RollName")] Roll roll)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(member).State = EntityState.Modified;
+                db.Entry(roll).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.RollID = new SelectList(db.Rolls, "Id", "RollName", member.RollID);
-            return View(member);
+            return View(roll);
         }
 
-        // GET: Members/Delete/5
+        // GET: Rolls/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Member member = db.Members.Find(id);
-            if (member == null)
+            Roll roll = db.Rolls.Find(id);
+            if (roll == null)
             {
                 return HttpNotFound();
             }
-            return View(member);
+            return View(roll);
         }
 
-        // POST: Members/Delete/5
+        // POST: Rolls/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Member member = db.Members.Find(id);
-            db.Members.Remove(member);
+            Roll roll = db.Rolls.Find(id);
+            db.Rolls.Remove(roll);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
